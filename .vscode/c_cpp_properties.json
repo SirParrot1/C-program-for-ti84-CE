@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        {
+            "name": "CE",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:HOME}/CEdev/include"
+            ],
+            "defines": [
+                "__TICE__=1",
+                "_EZ80=1"
+            ],
+            "compilerPath": "",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x86"
+        }
+    ],
+    "version": 4
+}
