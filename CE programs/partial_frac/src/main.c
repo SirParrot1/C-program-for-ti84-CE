@@ -50,6 +50,7 @@ static bool input_int(const char *prompt, uint8_t row, int *out);
 
 
 //Main
+
 int main(void)
 {
     int num;
