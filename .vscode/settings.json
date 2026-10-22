@@ -1,0 +1,5 @@
+{
+    // Hide the C/C++ extension's Run/Debug button: it compiles with the
+    // Mac's clang, which can't build CE programs. Use Cmd+Shift+B instead.
+    "C_Cpp.debugShortcut": false
+}
