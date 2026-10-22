@@ -1,0 +1,42 @@
+{
+    // Build the CE program that owns the open file.
+    // Open any file in <project>/src/ and press Cmd+Shift+B;
+    // the .8xp ends up in <project>/bin/.
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${fileDirname}/..",
+        "env": {
+            "PATH": "${env:HOME}/CEdev/bin:${env:PATH}"
+        }
+    },
+    "tasks": [
+        {
+            "label": "CE: make",
+            "type": "shell",
+            "command": "make",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${fileDirname}/.."]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CE: clean",
+            "type": "shell",
+            "command": "make clean",
+            "problemMatcher": []
+        },
+        {
+            "label": "CE: rebuild",
+            "type": "shell",
+            "command": "make clean && make",
+            "problemMatcher": {
+                "base": "$gcc",
+                "fileLocation": ["relative", "${fileDirname}/.."]
+            }
+        }
+    ]
+}

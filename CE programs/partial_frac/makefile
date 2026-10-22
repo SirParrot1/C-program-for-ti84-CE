@@ -2,9 +2,9 @@
 # Makefile Options
 # ----------------------------
 
-NAME = TEMPLATE
+NAME = PARTFRAC
 ICON = icon.png
-DESCRIPTION = "CE C Template"
+DESCRIPTION = "partial fraction decomposition"
 COMPRESSED = NO
 ARCHIVED = NO
 

@@ -1,0 +1,231 @@
+
+Merging object attributes
+
+
+Discarded input sections
+
+ .comment       0x00000000       0x70 obj/PARTFRAC.o
+ .note.GNU-stack
+                0x00000000        0x0 obj/PARTFRAC.o
+ .init.weak_crt
+                0x00000000       0x10 obj/PARTFRAC.o
+ .text          0x00000000        0x0 obj/crt0.o
+ .data          0x00000000        0x0 obj/crt0.o
+ .bss           0x00000000        0x0 obj/crt0.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+prgm             0x00d1a87f         0x00400000
+bss              0x00d052c6         0x0000ed12
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00d1a87f                        LOAD_ADDR = 0xd1a87f
+                0x00d052c6                        BSSHEAP_LOW = 0xd052c6
+                0x00d13fd8                        BSSHEAP_HIGH = 0xd13fd8
+                0x00d1a87e                        STACK_HIGH = 0xd1a87e
+                0x00000001                        __TICE__ = 0x1
+                0x00d1a87f                        . = LOAD_ADDR
+
+.header         0x00d1a87f      0x129
+ *(.header)
+ .header        0x00d1a87f        0x3 obj/crt0.o
+ *(.header.icon)
+ .header.icon   0x00d1a882      0x126 obj/PARTFRAC.o
+                0x00d1a887                ___icon
+                0x00d1a989                ___description
+
+.init           0x00d1a9a8       0x79
+ *(.init)
+ .init          0x00d1a9a8       0x79 obj/crt0.o
+                0x00d1a9a8                __start
+                0x00d1a9e5                ___exithl
+                0x00d1a9e6                _exit.sp
+
+.text           0x00d1aa21      0x1d6
+ *(.text.unlikely .text.*_unlikely .text.unlikely.*)
+ *(.text.exit .text.exit.*)
+ *(.text.startup .text.startup.*)
+ *(.text.hot .text.hot.*)
+ *(SORT_BY_NAME(.text.sorted.*))
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x00d1aa21       0x80 obj/PARTFRAC.o
+                0x00d1aa21                __bshl
+                0x00d1aa2a                __frameset
+                0x00d1aa38                __lshrs
+                0x00d1aa52                __lshru
+                0x00d1aa60                _atoi
+                0x00d1aa98                __ineg
+                0x00d1aa98                __sneg
+ .text._main    0x00d1aaa1      0x156 obj/PARTFRAC.o
+                0x00d1aaa1                _main
+ *(.gnu.warning)
+
+.rodata         0x00d1abf7       0x26
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata._.str  0x00d1abf7        0x6 obj/PARTFRAC.o
+ .rodata._.str.1
+                0x00d1abfd        0xa obj/PARTFRAC.o
+ .rodata._.str.2
+                0x00d1ac07        0x3 obj/PARTFRAC.o
+ .rodata._switch.table.main
+                0x00d1ac0a       0x13 obj/PARTFRAC.o
+
+.init_array     0x00d1ac1d        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(.preinit_array)
+ *(SORT_BY_INIT_PRIORITY(.init_array.*))
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x00d1ac1d        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*))
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+                0x00d1ac1d                        ___data_low = .
+
+.data           0x00d1ac1d        0x0
+ *(.data .data.* .gnu.linkonce.d.*)
+ *(.data1)
+                0x00d1ac1d                        ___runprgm_reloc_start = .
+ *(.runprgm.reloc)
+                0x00d1ac1d                        ___runprgm_reloc_end = .
+                0x00d1ac1d                        ___data_high = .
+                0x00000000                        ___data_len = (___data_high - ___data_low)
+                0x00d052c6                        . = BSSHEAP_LOW
+                0x00d052c6                        ___bss_low = .
+
+.bss
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ *(COMMON)
+                0x00d052c6                        ___bss_high = .
+                0x00000000                        ___bss_len = (___bss_high - ___bss_low)
+                0x00000001                        ASSERT ((. <= BSSHEAP_HIGH), Error: BSS exceed BSSHEAP_HIGH limit)
+                0x00d052c6                        ___heap_low = .
+                0x00d13fd8                        . = BSSHEAP_HIGH
+                0x00d13fd8                        ___heap_high = .
+
+.runprgm
+ *(.runprgm.reloc)
+
+.debug_info
+ *(.debug_info .debug_info.*)
+
+.debug_abbrev
+ *(.debug_abbrev .debug_abbrev.*)
+
+.debug_line
+ *(.debug_line .debug_line.*)
+
+.debug_line_str
+ *(.debug_line_str .debug_line_str.*)
+
+.debug_str
+ *(.debug_str .debug_str.*)
+
+.debug_str_offsets
+ *(.debug_str_offsets .debug_str_offsets.*)
+
+.debug_addr
+ *(.debug_addr .debug_addr.*)
+
+.debug_aranges
+ *(.debug_aranges .debug_aranges.*)
+
+.debug_ranges
+ *(.debug_ranges .debug_ranges.*)
+
+.debug_rnglists
+ *(.debug_rnglists .debug_rnglists.*)
+
+.debug_loc
+ *(.debug_loc .debug_loc.*)
+
+.debug_loclists
+ *(.debug_loclists .debug_loclists.*)
+
+.debug_frame
+ *(.debug_frame .debug_frame.*)
+
+.debug_macro
+ *(.debug_macro .debug_macro.*)
+
+.debug_macinfo
+ *(.debug_macinfo .debug_macinfo.*)
+
+.debug_names
+ *(.debug_names .debug_names.*)
+
+.debug_pubnames
+ *(.debug_pubnames .debug_pubnames.*)
+
+.debug_pubtypes
+ *(.debug_pubtypes .debug_pubtypes.*)
+
+.debug_types
+ *(.debug_types .debug_types.*)
+
+.debug_sup
+ *(.debug_sup .debug_sup.*)
+
+.debug_cu_index
+ *(.debug_cu_index .debug_cu_index.*)
+
+.debug_tu_index
+ *(.debug_tu_index .debug_tu_index.*)
+
+.gdb_index
+ *(.gdb_index)
+
+.debug_gdb_scripts
+ *(.debug_gdb_scripts)
+
+.debug_abbrev.dwo
+ *(.debug_abbrev.dwo .debug_abbrev.dwo.*)
+
+.debug_info.dwo
+ *(.debug_info.dwo .debug_info.dwo.*)
+
+.debug_line.dwo
+ *(.debug_line.dwo .debug_line.dwo.*)
+
+.debug_loclists.dwo
+ *(.debug_loclists.dwo .debug_loclists.dwo.*)
+
+.debug_macro.dwo
+ *(.debug_macro.dwo .debug_macro.dwo.*)
+
+.debug_rnglists.dwo
+ *(.debug_rnglists.dwo .debug_rnglists.dwo.*)
+
+.debug_str.dwo
+ *(.debug_str.dwo .debug_str.dwo.*)
+
+.debug_str_offsets.dwo
+ *(.debug_str_offsets.dwo .debug_str_offsets.dwo.*)
+
+.eh_frame
+ *(.eh_frame)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+/DISCARD/
+ *(.comment)
+ *(.note*)
+                [!provide]                        PROVIDE (___runprgm_reloc_len = (___runprgm_reloc_end - ___runprgm_reloc_start))
+LOAD obj/PARTFRAC.o
+LOAD obj/crt0.o
+START GROUP
+LOAD /Users/charlesprice/CEdev/lib/libc/allocator_standard.a
+LOAD /Users/charlesprice/CEdev/lib/crt/libcrt.a
+LOAD /Users/charlesprice/CEdev/lib/ce/libce.a
+LOAD /Users/charlesprice/CEdev/lib/softfloat/libsoftfloat.a
+LOAD /Users/charlesprice/CEdev/lib/libc/libc_os.a
+LOAD /Users/charlesprice/CEdev/lib/libcxx/libcxx.a
+END GROUP
+OUTPUT(bin/PARTFRAC.obj elf32-z80)
