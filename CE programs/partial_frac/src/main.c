@@ -12,6 +12,7 @@
 
 //#include <graphx.h> not now, graphx and OS screen don't play nice
 #include <stdint.h>
+#include <string.h>
 #include <keypadc.h>//not used
 #include <stdbool.h>
 #include <stdlib.h>
@@ -19,7 +20,8 @@
 #include <ti/screen.h>
 #include <ti/sprintf.h>
 #include <ti/getcsc.h>
-
+#include <ti/tokens.h>
+#include <ti/vars.h>
 /*
 *--------------------------------------
 The plan
@@ -53,21 +55,27 @@ static bool input_int(const char *prompt, uint8_t row, int *out);
 
 int main(void)
 {
-    int num;
+    int num_coef;
+    
 
-    os_ClrHome();
-    if (input_int("num? ", 0, &num)) {
+   os_ClrHome();
+    if (input_int("# of coefficients", 0, &num_coef)) {
         os_SetCursorPos(1, 0);
 
         char buf[20];
-        boot_sprintf(buf, "Score: %d", num);
+        boot_sprintf(buf, "Test 0: %d", num_coef);
         os_PutStrFull(buf);
 
     }
 
-    while (!os_GetCSC());
+
+    
+
+
+    //while (!os_GetCSC());
     return 0;
 }
+
 
 
 /*Define

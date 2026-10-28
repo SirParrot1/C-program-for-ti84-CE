@@ -6,24 +6,28 @@
 	.type	_main,@function
 _main:                                  ; @main
 ; %bb.0:
-	ld	hl, -29
+	ld	hl, -75
 	call	__frameset
+	lea	hl, ix - 60
+	ld	(ix - 66), hl
 	lea	hl, ix - 20
-	ld	(ix - 26), hl
+	ld	(ix - 72), hl
+	lea	hl, ix - 40
+	ld	(ix - 69), hl
 	ld	iy, -3145600
 	call	_os_ClrLCD
 	call	_os_HomeUp
 	call	_os_DrawStatusBar
-	ld	(ix - 20), 0
-	ld	hl, (ix - 26)
+	ld	(ix - 60), 0
+	ld	hl, (ix - 66)
 	inc	hl
-	ld	(ix - 29), hl
+	ld	(ix - 75), hl
 	ld	h, 0
 	.local	.LBB0_1
 .LBB0_1:                                ; =>This Loop Header: Depth=1
                                         ;     Child Loop BB0_2 Depth 2
                                         ;       Child Loop BB0_3 Depth 3
-	ld	(ix - 23), h
+	ld	(ix - 63), h
 	.local	.LBB0_2
 .LBB0_2:                                ;   Parent Loop BB0_1 Depth=1
                                         ; =>  This Loop Header: Depth=2
@@ -39,11 +43,11 @@ _main:                                  ; @main
 	push	hl
 	call	_os_PutStrFull
 	pop	hl
-	ld	hl, (ix - 26)
+	ld	hl, (ix - 66)
 	push	hl
 	call	_os_PutStrFull
 	pop	hl
-	ld	hl, _.str.2
+	ld	hl, _.str.5
 	push	hl
 	call	_os_PutStrFull
 	pop	hl
@@ -56,7 +60,7 @@ _main:                                  ; @main
 	or	a, a
 	jr	z, .LBB0_3
 ; %bb.4:                                ;   in Loop: Header=BB0_2 Depth=2
-	ld	a, (ix - 20)
+	ld	a, (ix - 60)
 	cp	a, 45
 	ld	l, -1
 	jr	z, .LBB0_6
@@ -64,7 +68,7 @@ _main:                                  ; @main
 	ld	l, 0
 	.local	.LBB0_6
 .LBB0_6:                                ;   in Loop: Header=BB0_2 Depth=2
-	ld	h, (ix - 23)                    ; 1-byte Folded Reload
+	ld	h, (ix - 63)                    ; 1-byte Folded Reload
 	ld	a, h
 	or	a, a
 	ld	a, -1
@@ -136,8 +140,8 @@ _main:                                  ; @main
 	jp	.LBB0_24
 	.local	.LBB0_18
 .LBB0_18:                               ;   in Loop: Header=BB0_1 Depth=1
-	ld	(ix - 20), 45
-	ld	iy, (ix - 29)
+	ld	(ix - 60), 45
+	ld	iy, (ix - 75)
 	ld	h, 1
 	jr	.LBB0_22
 	.local	.LBB0_19
@@ -151,15 +155,15 @@ _main:                                  ; @main
 	add	hl, de
 	ld	a, (hl)
 	lea	de, iy + 0
-	ld	e, (ix - 23)                    ; 1-byte Folded Reload
-	inc	(ix - 23)
-	ld	bc, (ix - 26)
+	ld	e, (ix - 63)                    ; 1-byte Folded Reload
+	inc	(ix - 63)
+	ld	bc, (ix - 66)
 	push	bc
 	pop	hl
 	add	hl, de
 	ld	(hl), a
 	lea	de, iy + 0
-	ld	h, (ix - 23)                    ; 1-byte Folded Reload
+	ld	h, (ix - 63)                    ; 1-byte Folded Reload
 	ld	e, h
 	push	bc
 	pop	iy
@@ -169,7 +173,7 @@ _main:                                  ; @main
 	dec	h
 	ld	de, 0
 	ld	e, h
-	ld	iy, (ix - 26)
+	ld	iy, (ix - 66)
 	.local	.LBB0_21
 .LBB0_21:                               ;   in Loop: Header=BB0_1 Depth=1
 	add	iy, de
@@ -179,10 +183,10 @@ _main:                                  ; @main
 	jp	.LBB0_1
 	.local	.LBB0_23
 .LBB0_23:
-	ld	hl, (ix - 26)
+	ld	hl, (ix - 66)
 	push	hl
 	call	_atoi
-	ld	(ix - 23), hl
+	ld	(ix - 63), hl
 	pop	hl
 	or	a, a
 	sbc	hl, hl
@@ -192,26 +196,80 @@ _main:                                  ; @main
 	call	_os_SetCursorPos
 	pop	hl
 	pop	hl
-	ld	hl, (ix - 23)
+	ld	hl, (ix - 63)
 	push	hl
 	ld	hl, _.str.1
 	push	hl
-	ld	hl, (ix - 26)
+	ld	hl, (ix - 66)
 	push	hl
 	call	_boot_sprintf
 	pop	hl
 	pop	hl
 	pop	hl
-	ld	hl, (ix - 26)
+	ld	hl, (ix - 66)
 	push	hl
 	call	_os_PutStrFull
 	pop	hl
 	.local	.LBB0_24
-.LBB0_24:                               ; =>This Inner Loop Header: Depth=1
+.LBB0_24:
+	ld	hl, (ix - 72)
+	push	hl
+	call	_strlen
+	pop	de
+	push	hl
+	ld	hl, (ix - 72)
+	push	hl
+	ld	hl, _.str.2
+	push	hl
+	call	_os_GetStringInput
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	de, (ix - 72)
+	push	de
+	ld	hl, _.str.3
+	push	hl
+	push	de
+	call	_boot_sprintf
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix - 72)
+	push	hl
+	call	_os_PutStrFull
+	pop	hl
+	ld	hl, (ix - 69)
+	push	hl
+	call	_strlen
+	pop	de
+	push	hl
+	ld	hl, (ix - 69)
+	push	hl
+	ld	hl, _.str.4
+	push	hl
+	call	_os_GetTokenInput
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	de, (ix - 69)
+	push	de
+	ld	hl, _.str.3
+	push	hl
+	push	de
+	call	_boot_sprintf
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	hl, (ix - 69)
+	push	hl
+	call	_os_PutStrFull
+	pop	hl
+	.local	.LBB0_25
+.LBB0_25:                               ; =>This Inner Loop Header: Depth=1
 	call	_os_GetCSC
 	or	a, a
-	jr	z, .LBB0_24
-; %bb.25:
+	jr	z, .LBB0_25
+; %bb.26:
 	or	a, a
 	sbc	hl, hl
 	ld	sp, ix
@@ -231,12 +289,30 @@ _.str:
 	.balign	1
 	.local	_.str.1
 _.str.1:
-	.asciz	"Score: %d"
+	.asciz	"Test 0: %d"
 
 	.section	.rodata._.str.2,"a",@progbits
 	.balign	1
 	.local	_.str.2
 _.str.2:
+	.asciz	"num1? "
+
+	.section	.rodata._.str.3,"a",@progbits
+	.balign	1
+	.local	_.str.3
+_.str.3:
+	.asciz	"Test 1: %s"
+
+	.section	.rodata._.str.4,"a",@progbits
+	.balign	1
+	.local	_.str.4
+_.str.4:
+	.asciz	"num2? "
+
+	.section	.rodata._.str.5,"a",@progbits
+	.balign	1
+	.local	_.str.5
+_.str.5:
 	.asciz	"_ "
 
 	.section	.rodata._switch.table.main,"a",@progbits
@@ -252,19 +328,22 @@ _switch.table.main:
 	.extern	_os_ClrLCD
 	.extern	_llvm.eh.sjlj.functioncontext
 	.extern	_os_GetCSC
-	.extern	_llvm.eh.sjlj.callsite
 	.extern	_llvm.eh.sjlj.setup.dispatch
+	.extern	_llvm.eh.sjlj.callsite
 	.extern	_llvm.stacksave.p0
 	.extern	_llvm.lifetime.end.p0
 	.extern	_os_SetCursorPos
 	.extern	_llvm.lifetime.start.p0
+	.extern	_os_GetStringInput
 	.extern	_llvm.eh.sjlj.lsda
 	.extern	__Unwind_SjLj_Register
 	.extern	_llvm.frameaddress.p0
 	.extern	_os_DrawStatusBar
 	.extern	__Unwind_SjLj_Unregister
 	.extern	__lshru
+	.extern	_os_GetTokenInput
 	.extern	_os_PutStrFull
+	.extern	_strlen
 	.extern	__bshl
 	.extern	_llvm.stackrestore.p0
 	.extern	__frameset

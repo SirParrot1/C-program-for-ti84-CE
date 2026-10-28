@@ -44,56 +44,65 @@ Linker script and memory map
                 0x00d1a9e5                ___exithl
                 0x00d1a9e6                _exit.sp
 
-.text           0x00d1aa21      0x1d6
+.text           0x00d1aa21      0x40f
  *(.text.unlikely .text.*_unlikely .text.unlikely.*)
  *(.text.exit .text.exit.*)
  *(.text.startup .text.startup.*)
  *(.text.hot .text.hot.*)
  *(SORT_BY_NAME(.text.sorted.*))
  *(.text .stub .text.* .gnu.linkonce.t.*)
- .text          0x00d1aa21       0x80 obj/PARTFRAC.o
+ .text          0x00d1aa21      0x245 obj/PARTFRAC.o
                 0x00d1aa21                __bshl
                 0x00d1aa2a                __frameset
-                0x00d1aa38                __lshrs
-                0x00d1aa52                __lshru
-                0x00d1aa60                _atoi
-                0x00d1aa98                __ineg
-                0x00d1aa98                __sneg
- .text._main    0x00d1aaa1      0x156 obj/PARTFRAC.o
-                0x00d1aaa1                _main
+                0x00d1aa38                __frameset0
+                0x00d1aa43                __lshrs
+                0x00d1aa5d                __lshru
+                0x00d1aa6b                _os_GetStringInput
+                0x00d1ab49                _os_GetTokenInput
+                0x00d1ac25                _atoi
+                0x00d1ac5d                __sneg
+                0x00d1ac5d                __ineg
+ .text._main    0x00d1ac66      0x1ca obj/PARTFRAC.o
+                0x00d1ac66                _main
  *(.gnu.warning)
 
-.rodata         0x00d1abf7       0x26
+.rodata         0x00d1ae30       0x40
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata._.str  0x00d1abf7        0x6 obj/PARTFRAC.o
+ .rodata._.str  0x00d1ae30        0x6 obj/PARTFRAC.o
  .rodata._.str.1
-                0x00d1abfd        0xa obj/PARTFRAC.o
+                0x00d1ae36        0xb obj/PARTFRAC.o
  .rodata._.str.2
-                0x00d1ac07        0x3 obj/PARTFRAC.o
+                0x00d1ae41        0x7 obj/PARTFRAC.o
+ .rodata._.str.3
+                0x00d1ae48        0xb obj/PARTFRAC.o
+ .rodata._.str.4
+                0x00d1ae53        0x7 obj/PARTFRAC.o
+ .rodata._.str.5
+                0x00d1ae5a        0x3 obj/PARTFRAC.o
  .rodata._switch.table.main
-                0x00d1ac0a       0x13 obj/PARTFRAC.o
+                0x00d1ae5d       0x13 obj/PARTFRAC.o
 
-.init_array     0x00d1ac1d        0x0
+.init_array     0x00d1ae70        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(.preinit_array)
  *(SORT_BY_INIT_PRIORITY(.init_array.*))
  *(.init_array)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x00d1ac1d        0x0
+.fini_array     0x00d1ae70        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*))
  *(.fini_array)
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x00d1ac1d                        ___data_low = .
+                0x00d1ae70                        ___data_low = .
 
-.data           0x00d1ac1d        0x0
+.data           0x00d1ae70        0x0
  *(.data .data.* .gnu.linkonce.d.*)
  *(.data1)
-                0x00d1ac1d                        ___runprgm_reloc_start = .
+                0x00d1ae70                        ___runprgm_reloc_start = .
  *(.runprgm.reloc)
-                0x00d1ac1d                        ___runprgm_reloc_end = .
-                0x00d1ac1d                        ___data_high = .
+                0x00d1ae70                        ___runprgm_reloc_end = .
+                0x00d1ae70                        ___data_high = .
                 0x00000000                        ___data_len = (___data_high - ___data_low)
                 0x00d052c6                        . = BSSHEAP_LOW
                 0x00d052c6                        ___bss_low = .
